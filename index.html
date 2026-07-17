@@ -17,21 +17,171 @@ box-sizing:border-box;
 }
 
 
+html,
 body{
 
 margin:0;
 
-min-height:100vh;
+width:100%;
 
-background:#050716;
-
-color:#f5f2ff;
-
-font-family:"Microsoft YaHei",sans-serif;
+height:100%;
 
 overflow-x:hidden;
 
+font-family:
+"Cormorant Garamond",
+"Microsoft YaHei",
+serif;
+
+color:#f8f5ff;
+
+background:
+linear-gradient(
+180deg,
+#090d2b,
+#17143b
+);
+
 }
+
+
+
+
+/* 星空层 */
+
+#stars{
+
+position:fixed;
+
+inset:0;
+
+overflow:hidden;
+
+z-index:-1;
+
+background:
+
+radial-gradient(
+circle at 50% 20%,
+rgba(120,100,220,.35),
+transparent 35%
+);
+
+}
+
+
+
+
+
+.star{
+
+position:absolute;
+
+width:3px;
+
+height:3px;
+
+background:white;
+
+border-radius:50%;
+
+animation:
+twinkle 3s infinite ease-in-out;
+
+}
+
+
+
+
+
+@keyframes twinkle{
+
+
+0%,100%{
+
+opacity:.3;
+
+transform:scale(1);
+
+}
+
+
+50%{
+
+opacity:1;
+
+transform:scale(1.8);
+
+}
+
+
+}
+
+
+
+
+
+
+
+/* 通用页面 */
+
+
+.page{
+
+min-height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+padding:30px;
+
+animation:
+fadeIn .8s ease;
+
+}
+
+
+
+
+.hidden{
+
+display:none!important;
+
+}
+
+
+
+
+
+@keyframes fadeIn{
+
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+
+}
+
+
 
 
 
@@ -39,7 +189,9 @@ overflow-x:hidden;
 
 /* 开场 */
 
-#intro{
+
+#opening{
+
 
 position:fixed;
 
@@ -47,110 +199,200 @@ inset:0;
 
 display:flex;
 
-justify-content:center;
-
 align-items:center;
 
-background:#02030d;
+justify-content:center;
 
-z-index:10;
+background:
+linear-gradient(
+180deg,
+#070923,
+#15143b
+);
 
-animation:introFade 5s forwards;
+
+z-index:20;
+
+
+animation:
+openingHide 5s forwards;
+
 
 }
 
 
 
-#introText{
 
-font-size:45px;
+.opening-word{
+
+
+font-size:28px;
+
+
+letter-spacing:6px;
+
 
 text-align:center;
 
+
+font-family:
+"Kaiti",
+serif;
+
+
+color:#fff;
+
+
+text-shadow:
+
+
+0 0 12px rgba(210,190,255,.8);
+
+
+animation:
+typingGlow 4s;
+
+
+}
+
+
+
+.opening-word div{
+
+opacity:0;
+
+animation:
+wordShow 2s forwards;
+
+}
+
+
+.opening-word div:nth-child(2){
+
+animation-delay:1.5s;
+
+}
+
+
+
+@keyframes wordShow{
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+
+
+
+@keyframes typingGlow{
+
+
+50%{
+
+text-shadow:
+0 0 30px #c8b7ff;
+
+}
+
+
+}
+
+
+
+
+
+@keyframes openingHide{
+
+
+0%,85%{
+
+opacity:1;
+
+}
+
+
+100%{
+
+opacity:0;
+
+visibility:hidden;
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+/* 首页 */
+
+
+.home-title{
+
+text-align:center;
+
+margin-bottom:50px;
+
+}
+
+
+
+.home-title h1{
+
+font-size:46px;
+
+font-weight:400;
+
 letter-spacing:8px;
+
+}
+
+
+
+.home-title p{
+
+opacity:.75;
+
+letter-spacing:3px;
+
+}
+
+
+
+
+
+
+
+/* 时间卡 */
+
+.time-card{
+
+position:absolute;
+
+top:35px;
+
+right:35px;
+
+
+text-align:center;
+
+
+font-size:14px;
+
 
 line-height:1.8;
 
-color:white;
 
-text-shadow:
-0 0 20px #b9a7ff;
-
-
-animation:textShow 5s forwards;
-
-}
-
-
-
-
-
-@keyframes textShow{
-
-
-0%{
-
-opacity:0;
-
-transform:scale(0.8);
-
-}
-
-
-30%{
-
-opacity:1;
-
-transform:scale(1);
-
-}
-
-
-70%{
-
-opacity:1;
-
-}
-
-
-100%{
-
-opacity:0;
-
-transform:scale(1.5);
-
-}
-
-
-}
-
-
-
-
-@keyframes introFade{
-
-
-0%{
-
-opacity:1;
-
-}
-
-
-80%{
-
-opacity:1;
-
-}
-
-
-100%{
-
-opacity:0;
-
-pointer-events:none;
-
-}
+opacity:.8;
 
 
 }
@@ -159,13 +401,11 @@ pointer-events:none;
 
 
 
+#days{
 
-/* 页面隐藏 */
+font-size:20px;
 
-
-.hidden{
-
-display:none;
+color:#ddd1ff;
 
 }
 
@@ -174,146 +414,76 @@ display:none;
 
 
 
-/* 星空主页 */
+/* 按钮 */
 
 
-#home{
-
-height:100vh;
+.home-buttons{
 
 display:flex;
 
 flex-direction:column;
 
-justify-content:center;
-
-align-items:center;
-
-background:
-
-radial-gradient(circle at top,#25204f,#050716);
+gap:25px;
 
 }
-
-
-
-
-
-#home::before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background-image:
-
-radial-gradient(white 1px,transparent 1px);
-
-background-size:70px 70px;
-
-opacity:0.4;
-
-}
-
-
-
-
-
-#home h1{
-
-font-size:48px;
-
-z-index:1;
-
-text-shadow:
-
-0 0 30px #a98cff;
-
-}
-
-
 
 
 
 button{
 
-position:relative;
-
-z-index:2;
 
 border:none;
 
+
+padding:16px 50px;
+
+
 border-radius:40px;
 
-padding:16px 40px;
 
-font-size:20px;
+font-size:18px;
+
 
 color:white;
 
-background:#8d7cff;
 
-cursor:pointer;
+background:
+
+rgba(255,255,255,.12);
+
+
+border:
+
+1px solid rgba(255,255,255,.25);
+
+
+
+backdrop-filter:blur(15px);
+
 
 box-shadow:
 
-0 0 25px rgba(140,120,255,.8);
+0 0 25px rgba(160,130,255,.35);
+
+
+cursor:pointer;
+
+
+transition:.3s;
+
 
 }
-
-
 
 
 
 button:hover{
 
-transform:scale(1.05);
+transform:translateY(-3px);
 
-}
-
-
-
-
-
-
-
-.page{
-
-min-height:100vh;
-
-padding:30px;
-
-background:
-
-radial-gradient(circle at top,#29234f,#050716);
-
-}
-
-
-
-
-
-.book{
-
-max-width:800px;
-
-margin:auto;
-
-padding:30px;
-
-background:
-
-rgba(255,255,255,0.12);
-
-border-radius:30px;
-
-backdrop-filter:blur(15px);
 
 box-shadow:
 
-0 0 40px rgba(150,120,255,.3);
+0 0 40px rgba(180,150,255,.7);
 
 }
 
@@ -321,17 +491,19 @@ box-shadow:
 
 
 
-.section{
+.setting-btn{
 
-margin-top:25px;
+position:absolute;
 
-padding:20px;
+top:35px;
 
-border-radius:20px;
+left:35px;
 
-background:
+width:45px;
 
-rgba(255,255,255,.08);
+height:45px;
+
+padding:0;
 
 }
 
@@ -339,122 +511,138 @@ rgba(255,255,255,.08);
 
 
 
-input,
-textarea{
+
+
+
+/* 手札纸张 */
+
+
+.paper{
+
 
 width:100%;
 
-margin:8px 0;
 
-padding:12px;
+max-width:850px;
 
-border:none;
 
-border-radius:12px;
+padding:35px;
 
-background:
-
-rgba(0,0,0,.3);
-
-color:white;
-
-font-size:16px;
-
-}
-
-
-
-
-textarea{
-
-height:130px;
-
-}
-
-
-
-
-
-.emotion{
-
-display:flex;
-
-gap:10px;
-
-}
-
-
-
-.emotion button{
-
-padding:10px;
-
-width:55px;
-
-height:55px;
-
-font-size:25px;
-
-background:
-
-rgba(255,255,255,.15);
-
-}
-
-
-
-
-
-.exit{
-
-margin-bottom:20px;
-
-background:
-
-rgba(255,255,255,.15);
-
-}
-
-
-
-
-
-
-#diaryPage{
-
-text-align:center;
-
-}
-
-
-
-
-
-#history{
-
-max-width:800px;
-
-margin:30px auto;
-
-}
-
-
-
-
-
-.history-item{
-
-padding:20px;
-
-margin:15px;
-
-border-radius:20px;
 
 background:
 
 rgba(255,255,255,.1);
 
-text-align:left;
+
+border-radius:28px;
+
+
+backdrop-filter:blur(20px);
+
+
+box-shadow:
+
+0 0 40px rgba(100,80,200,.3);
+
+
+}
+
+
+
+
+
+
+
+textarea,
+input{
+
+
+width:100%;
+
+
+padding:14px;
+
+
+margin:8px 0;
+
+
+border-radius:15px;
+
+
+border:none;
+
+
+background:
+
+rgba(0,0,0,.25);
+
+
+color:white;
+
+
+font-size:16px;
+
+
+}
+
+
+
+
+
+textarea{
+
+min-height:130px;
+
+}
+
+
+
+
+
+.tarot-row{
+
+
+display:flex;
+
+gap:20px;
+
+
+}
+
+
+
+.tarot-box{
+
+
+flex:1;
+
+
+text-align:center;
+
+
+}
+
+
+
+
+
+@media(max-width:700px){
+
+
+.tarot-row{
+
+flex-direction:column;
+
+}
+
+
+.time-card{
+
+top:20px;
+
+right:20px;
+
+}
 
     }
 
@@ -468,15 +656,60 @@ text-align:left;
 <body>
 
 
-<!-- 开场页面 -->
+<!-- 星空背景 -->
 
-<div id="intro">
+<div id="stars"></div>
 
 
-<div id="introText">
 
-你与他<br>
-未完待续
+<!-- 开场 -->
+
+<section id="opening">
+
+
+<div class="opening-word">
+
+<div>你与他</div>
+
+<div>未完待续</div>
+
+</div>
+
+
+</section>
+
+
+
+
+
+<!-- 首页 -->
+
+<section id="home" class="page">
+
+
+<div class="time-card">
+
+
+<div>
+☾
+</div>
+
+
+<div>
+与你相遇以来
+</div>
+
+
+<div id="days">
+
+第 0 天
+
+</div>
+
+
+<div id="meetDate">
+
+相遇于 未设置
 
 </div>
 
@@ -487,96 +720,16 @@ text-align:left;
 
 
 
-<!-- 星空主页 -->
-
-
-<div id="home" class="hidden">
+<div class="home-title">
 
 
 <h1>
-🌌 星间手札
+星间手札
 </h1>
 
 
-<button onclick="openRecord()">
-
-记录今日塔罗
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-<!-- 记录页面 -->
-
-
-<div id="record" class="page hidden">
-
-
-<button class="exit"
-onclick="backHome()">
-
-← 退出
-
-</button>
-
-
-
-<div class="book">
-
-
-<h1>
-🔮 今日塔罗
-</h1>
-
-
-
-<div class="section">
-
-
-<h2>
-🌙 今日心情
-</h2>
-
-
-<input id="moodText"
-placeholder="今天的心情……">
-
-
-
-<div class="emotion">
-
-
-<button onclick="chooseMood('😊')">
-😊
-</button>
-
-
-<button onclick="chooseMood('🥰')">
-🥰
-</button>
-
-
-<button onclick="chooseMood('😢')">
-😢
-</button>
-
-
-<button onclick="chooseMood('🌙')">
-🌙
-</button>
-
-
-</div>
-
-
-<p id="selectedMood">
+<p>
+记录与你相遇的每一次星光
 </p>
 
 
@@ -587,25 +740,22 @@ placeholder="今天的心情……">
 
 
 
-
-<div class="section">
-
-
-<h2>
-🔮 塔罗牌
-</h2>
+<div class="home-buttons">
 
 
-<input id="pastCard"
-placeholder="过去">
+<button onclick="openRecord()">
+
+✨ 记录今日塔罗
+
+</button>
 
 
-<input id="nowCard"
-placeholder="现在">
 
+<button onclick="openDiary()">
 
-<input id="futureCard"
-placeholder="未来">
+📖 打开星间日记
+
+</button>
 
 
 </div>
@@ -615,8 +765,153 @@ placeholder="未来">
 
 
 
+<button class="setting-btn"
+onclick="openSetting()">
 
-<div class="section">
+☾
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- 设置页面 -->
+
+<section id="setting" class="page hidden">
+
+
+<button onclick="backHome()">
+
+← 返回
+
+</button>
+
+
+<div class="paper">
+
+
+<h2>
+🌙 时间设置
+</h2>
+
+
+<p>
+与你相遇的日期
+</p>
+
+
+<input 
+type="date"
+id="meetInput">
+
+
+
+<button onclick="saveMeetDate()">
+
+保存
+
+</button>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- 记录页面 -->
+
+<section id="record" class="page hidden">
+
+
+<button onclick="backHome()">
+
+← 返回星空
+
+</button>
+
+
+
+<div class="paper">
+
+
+<h1>
+🔮 今日塔罗
+</h1>
+
+
+<div id="today">
+
+</div>
+
+
+
+
+
+
+<h2>
+今日牌阵
+</h2>
+
+
+<div class="tarot-row">
+
+
+<div class="tarot-box">
+
+过去
+
+<input id="pastCard">
+
+</div>
+
+
+
+<div class="tarot-box">
+
+现在
+
+<input id="nowCard">
+
+</div>
+
+
+
+<div class="tarot-box">
+
+未来
+
+<input id="futureCard">
+
+</div>
+
+
+</div>
+
+
+
+
+
+
 
 
 <h2>
@@ -627,15 +922,10 @@ placeholder="未来">
 <textarea id="message"></textarea>
 
 
-</div>
 
 
 
 
-
-
-
-<div class="section">
 
 
 <h2>
@@ -646,15 +936,10 @@ placeholder="未来">
 <textarea id="reading"></textarea>
 
 
-</div>
 
 
 
 
-
-
-
-<div class="section">
 
 
 <h2>
@@ -665,26 +950,13 @@ placeholder="未来">
 <textarea id="diary"></textarea>
 
 
-</div>
-
-
 
 
 
 
 <button onclick="saveDiary()">
 
-✨ 保存记录
-
-</button>
-
-
-
-
-
-<button onclick="openDiary()">
-
-📖 打开日记
+保存今日星光
 
 </button>
 
@@ -693,7 +965,7 @@ placeholder="未来">
 </div>
 
 
-</div>
+</section>
 
 
 
@@ -706,20 +978,23 @@ placeholder="未来">
 <!-- 日记页面 -->
 
 
-<div id="diaryPage" class="page hidden">
+<section id="diary" class="page hidden">
 
 
-<button class="exit"
-onclick="backHome()">
+<button onclick="backHome()">
 
-← 返回
+← 返回星空
 
 </button>
 
 
 
+
+<div class="paper">
+
+
 <h1>
-📖 我的星间记录
+📖 星间日记
 </h1>
 
 
@@ -742,41 +1017,55 @@ onclick="backHome()">
 </div>
 
 
+</section>
+
+
+
+
+
+
 
 
 
 <script>
 
+// =================
+// 星空生成
+// =================
 
-let selectedMood="";
-
-let editing=false;
-
-
-
-// 开场结束进入主页
-
-setTimeout(function(){
-
-document.getElementById("intro").style.display="none";
-
-document.getElementById("home").classList.remove("hidden");
+const stars =
+document.getElementById("stars");
 
 
-},5000);
+for(let i=0;i<120;i++){
+
+let star=document.createElement("div");
+
+star.className="star";
 
 
+star.style.left=
+Math.random()*100+"%";
 
 
+star.style.top=
+Math.random()*100+"%";
 
-// 心情选择
 
-function chooseMood(mood){
+let size=
+Math.random()*3+1;
 
-selectedMood=mood;
 
-document.getElementById("selectedMood").innerHTML=
-"今日心情："+mood;
+star.style.width=size+"px";
+
+star.style.height=size+"px";
+
+
+star.style.animationDelay=
+Math.random()*5+"s";
+
+
+stars.appendChild(star);
 
 }
 
@@ -785,14 +1074,65 @@ document.getElementById("selectedMood").innerHTML=
 
 
 
+
+// =================
 // 页面切换
+// =================
+
+
+function hideAll(){
+
+document.querySelectorAll(".page")
+.forEach(function(p){
+
+p.classList.add("hidden");
+
+});
+
+}
+
 
 
 function openRecord(){
 
-home.classList.add("hidden");
+hideAll();
 
-record.classList.remove("hidden");
+document.getElementById("record")
+.classList.remove("hidden");
+
+
+document.getElementById("today")
+.innerHTML=
+new Date().toLocaleDateString();
+
+}
+
+
+
+
+
+function openDiary(){
+
+hideAll();
+
+document.getElementById("diary")
+.classList.remove("hidden");
+
+
+showHistory();
+
+}
+
+
+
+
+
+function openSetting(){
+
+hideAll();
+
+document.getElementById("setting")
+.classList.remove("hidden");
 
 }
 
@@ -801,11 +1141,10 @@ record.classList.remove("hidden");
 
 function backHome(){
 
-record.classList.add("hidden");
+hideAll();
 
-diaryPage.classList.add("hidden");
-
-home.classList.remove("hidden");
+document.getElementById("home")
+.classList.remove("hidden");
 
 }
 
@@ -814,27 +1153,123 @@ home.classList.remove("hidden");
 
 
 
+
+
+
+// =================
+// 相遇日期
+// =================
+
+
+function saveMeetDate(){
+
+
+let date=
+document.getElementById("meetInput").value;
+
+
+localStorage.setItem(
+"meetDate",
+date
+);
+
+
+updateDays();
+
+
+alert("🌙 相遇日期已保存");
+
+
+}
+
+
+
+
+
+function updateDays(){
+
+
+let date=
+localStorage.getItem("meetDate");
+
+
+
+let days=document.getElementById("days");
+
+let text=document.getElementById("meetDate");
+
+
+
+if(!date){
+
+days.innerHTML="第 0 天";
+
+text.innerHTML=
+"相遇于 未设置";
+
+return;
+
+}
+
+
+
+let start=
+new Date(date);
+
+
+let now=
+new Date();
+
+
+
+let diff=
+Math.floor(
+(now-start)
+/(1000*60*60*24)
+);
+
+
+
+days.innerHTML=
+"第 "+diff+" 天";
+
+
+text.innerHTML=
+"相遇于 "+date;
+
+
+}
+
+
+
+
+
+updateDays();
+
+
+
+
+
+
+
+
+
+// =================
 // 保存记录
+// =================
 
 
 function saveDiary(){
 
 
-let data={
+let record={
 
 
 id:Date.now(),
 
 
-date:new Date().toLocaleDateString(),
-
-
-mood:
-selectedMood,
-
-
-moodText:
-document.getElementById("moodText").value,
+date:
+new Date().toLocaleDateString(),
 
 
 past:
@@ -865,32 +1300,26 @@ document.getElementById("diary").value
 
 
 
-
 let list=
-
-JSON.parse(localStorage.getItem("starMemory"))
-
-||
-
-[];
+JSON.parse(
+localStorage.getItem("starDiary")
+)
+||[];
 
 
 
+list.push(record);
 
-list.push(data);
 
 
 localStorage.setItem(
-
-"starMemory",
-
+"starDiary",
 JSON.stringify(list)
-
 );
 
 
 
-alert("✨ 记录已经保存");
+alert("✨ 今日星光已保存");
 
 
 }
@@ -901,47 +1330,41 @@ alert("✨ 记录已经保存");
 
 
 
-// 打开日记
 
 
-function openDiary(){
+// =================
+// 日记
+// =================
 
 
-record.classList.add("hidden");
+let editing=false;
 
 
-diaryPage.classList.remove("hidden");
 
+function toggleEdit(){
+
+editing=!editing;
 
 showHistory();
 
-
 }
 
 
 
-
-
-
-
-
-// 显示记录
 
 
 function showHistory(){
 
 
-
-let box=document.getElementById("history");
+let box=
+document.getElementById("history");
 
 
 let list=
-
-JSON.parse(localStorage.getItem("starMemory"))
-
-||
-
-[];
+JSON.parse(
+localStorage.getItem("starDiary")
+)
+||[];
 
 
 
@@ -950,32 +1373,36 @@ box.innerHTML="";
 
 
 
+if(list.length===0){
+
+box.innerHTML=
+"还没有星间记录";
+
+return;
+
+}
+
+
+
 
 
 list.forEach(function(item,index){
 
 
+let div=
+document.createElement("div");
 
-let div=document.createElement("div");
 
-
-div.className="history-item";
-
+div.className="paper";
 
 
 div.innerHTML=
-
 
 `
 
 <h3>
 🌙 ${item.date}
 </h3>
-
-
-<p>
-心情：${item.mood}
-</p>
 
 
 <p>
@@ -994,33 +1421,24 @@ div.innerHTML=
 
 
 <p>
-${item.message.substring(0,80)}
+🕊 ${item.message}
 </p>
 
 
-
 ${
-editing ?
+editing?
 
 `
-
-<button onclick="moveUp(${index})">
-↑ 上移
-</button>
-
-<button onclick="moveDown(${index})">
-↓ 下移
-</button>
 
 <button onclick="deleteDiary(${item.id})">
+
 删除
+
 </button>
 
 `
 
-:
-
-""
+:""
 
 }
 
@@ -1028,174 +1446,7 @@ editing ?
 `;
 
 
-
-box.appendChild(div);
-
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-// 编辑模式
-
-
-function toggleEdit(){
-
-
-editing=!editing;
-
-
-showHistory();
-
-
-}
-
-
-
-
-
-
-
-// 删除
-
-
-function deleteDiary(id){
-
-
-let list=
-
-JSON.parse(localStorage.getItem("starMemory"))
-
-||
-
-[];
-
-
-
-list=list.filter(function(item){
-
-return item.id!==id;
-
-});
-
-
-
-localStorage.setItem(
-
-"starMemory",
-
-JSON.stringify(list)
-
-);
-
-
-
-showHistory();
-
-
-}
-
-
-
-
-
-
-
-// 上移
-
-
-function moveUp(index){
-
-
-let list=
-
-JSON.parse(localStorage.getItem("starMemory"));
-
-
-
-if(index>0){
-
-
-[list[index-1],list[index]]
-
-=
-[list[index],list[index-1]];
-
-
-}
-
-
-localStorage.setItem(
-
-"starMemory",
-
-JSON.stringify(list)
-
-);
-
-
-
-showHistory();
-
-}
-
-
-
-
-
-
-// 下移
-
-
-function moveDown(index){
-
-
-let list=
-
-JSON.parse(localStorage.getItem("starMemory"));
-
-
-
-if(index<list.length-1){
-
-
-[list[index+1],list[index]]
-
-=
-[list[index],list[index+1]];
-
-
-}
-
-
-
-localStorage.setItem(
-
-"starMemory",
-
-JSON.stringify(list)
-
-);
-
-
-
-showHistory();
-
-
-    }
-
 </script>
-
 
 
 </body>
