@@ -5,67 +5,267 @@
 <title>星间手札</title>
 
 <style>
-body {
+*{
+    box-sizing:border-box;
+}
+
+body{
     margin:0;
-    height:100vh;
-    background:linear-gradient(#080d2b,#1b1040);
-    color:white;
+    min-height:100vh;
+    background:
+    radial-gradient(circle at top,#40356b,#090b22 60%);
+    color:#eee;
     font-family:"Microsoft YaHei",sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    padding:30px;
+    overflow-x:hidden;
 }
 
-.box {
-    width:80%;
-    max-width:600px;
-    padding:40px;
+/* 星空 */
+.star{
+    position:fixed;
+    width:3px;
+    height:3px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 3s infinite;
+}
+
+@keyframes twinkle{
+    50%{
+        opacity:0.2;
+    }
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
     background:rgba(255,255,255,0.12);
-    border-radius:20px;
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    padding:35px;
+    box-shadow:0 0 40px rgba(150,120,255,0.3);
+}
+
+h1{
     text-align:center;
-    box-shadow:0 0 30px rgba(150,120,255,0.4);
+    font-size:42px;
 }
 
-h1 {
-    font-size:40px;
+.subtitle{
+    text-align:center;
+    opacity:0.8;
 }
 
-button {
-    padding:12px 30px;
+
+.card{
+    margin-top:25px;
+    padding:20px;
+    background:rgba(255,255,255,0.08);
+    border-radius:18px;
+}
+
+
+textarea{
+    width:100%;
+    min-height:120px;
+    background:rgba(0,0,0,0.2);
+    border:none;
+    border-radius:15px;
+    padding:15px;
+    color:white;
+    font-size:16px;
+}
+
+
+input{
+    background:rgba(255,255,255,0.15);
+    border:none;
+    border-radius:10px;
+    padding:8px;
+    color:white;
+}
+
+
+button{
+    margin-top:20px;
+    width:100%;
+    padding:15px;
     border:none;
     border-radius:30px;
-    background:#8d7cff;
+    background:#8c7cff;
     color:white;
     font-size:18px;
+}
+
+button:hover{
+    opacity:0.8;
 }
 
 </style>
 
 </head>
 
+
 <body>
 
-<div class="box">
+
+<div class="container">
 
 <h1>🌌 星间手札</h1>
 
-<p>
+<p class="subtitle">
 记录每一次抽牌，记录每一次想念。
 </p>
 
+
+<div class="card">
+
+<h2>📅 今日</h2>
+
 <p>
-📅 今日日期：
-<script>
-document.write(new Date().toLocaleDateString());
-</script>
+日期：
+<span id="date"></span>
 </p>
 
-<button>
-开始记录
-</button>
+<p>
+今日心情：
+⭐
+<input id="mood" placeholder="例如：5">
+</p>
 
 </div>
 
+
+
+<div class="card">
+
+<h2>🔮 今日塔罗</h2>
+
+
+<p>过去：</p>
+<input id="past" placeholder="牌名">
+
+
+<p>现在：</p>
+<input id="now" placeholder="牌名">
+
+
+<p>未来：</p>
+<input id="future" placeholder="牌名">
+
+
+</div>
+
+
+
+<div class="card">
+
+<h2>💫 我的解读</h2>
+
+<textarea id="reading"
+placeholder="记录你的塔罗理解……">
+</textarea>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>🕊 想对他说的话</h2>
+
+<textarea id="message"
+placeholder="写下想说的话……">
+</textarea>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>📖 今日记录</h2>
+
+<textarea id="diary"
+placeholder="今天发生了什么……">
+</textarea>
+
+
+</div>
+
+
+<button onclick="save()">
+💾 保存今天的记录
+</button>
+
+
+</div>
+
+
+
+<script>
+
+document.getElementById("date").innerHTML =
+new Date().toLocaleDateString();
+
+
+
+function save(){
+
+let data={
+
+mood:mood.value,
+past:past.value,
+now:now.value,
+future:future.value,
+reading:reading.value,
+message:message.value,
+diary:diary.value
+
+};
+
+
+localStorage.setItem(
+"starDiary",
+JSON.stringify(data)
+);
+
+
+alert("✨ 已放入星间记忆");
+
+}
+
+
+
+window.onload=function(){
+
+let data=JSON.parse(
+localStorage.getItem("starDiary")
+);
+
+
+if(data){
+
+mood.value=data.mood;
+past.value=data.past;
+now.value=data.now;
+future.value=data.future;
+reading.value=data.reading;
+message.value=data.message;
+diary.value=data.diary;
+
+}
+
+};
+
+
+
+</script>
+
+
 </body>
-</html>
+    </html>
