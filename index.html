@@ -17,34 +17,29 @@ box-sizing:border-box;
 }
 
 
-body{
+html,body{
 
 margin:0;
 
 width:100%;
 
-min-height:100vh;
+height:100%;
 
-overflow:hidden;
+overflow-x:hidden;
 
 font-family:
 "Kaiti",
 "Microsoft YaHei",
 serif;
 
-color:white;
-
+color:#f8f5ff;
 
 background:
 
 linear-gradient(
-
 180deg,
-
-#070b28,
-
-#171445
-
+#070b27,
+#171441
 );
 
 }
@@ -55,7 +50,8 @@ linear-gradient(
 
 /* 星空 */
 
-#sky{
+
+#stars{
 
 position:fixed;
 
@@ -69,8 +65,6 @@ overflow:hidden;
 
 
 
-
-
 .star{
 
 position:absolute;
@@ -80,7 +74,7 @@ border-radius:50%;
 background:white;
 
 animation:
-shine 3s infinite;
+twinkle 3s infinite ease-in-out;
 
 }
 
@@ -88,15 +82,13 @@ shine 3s infinite;
 
 
 
-@keyframes shine{
-
+@keyframes twinkle{
 
 0%,100%{
 
-opacity:.3;
+opacity:.25;
 
 }
-
 
 50%{
 
@@ -105,6 +97,7 @@ opacity:1;
 }
 
 }
+
 
 
 
@@ -122,40 +115,33 @@ position:fixed;
 
 inset:0;
 
+z-index:20;
+
+
 display:flex;
 
 justify-content:center;
 
 align-items:center;
 
+
 background:
 
 radial-gradient(
-
-circle,
-
-#25205a,
-
-#070b28
-
+circle at center,
+#29245c,
+#070b27
 );
 
 
-z-index:10;
-
-
-animation:
-
-openingEnd 6s forwards;
-
+transition:.8s;
 
 }
 
 
 
 
-
-.opening-title{
+.opening-box{
 
 text-align:center;
 
@@ -163,62 +149,23 @@ text-align:center;
 
 
 
+.you{
 
-.vertical-text{
+font-size:30px;
 
-
-font-size:34px;
-
-
-line-height:1.5;
-
+line-height:1.7;
 
 letter-spacing:8px;
 
 
 text-shadow:
 
-0 0 15px #c8b7ff;
-
-
-}
-
-
-
-
-
-.vertical-text div{
-
-
-opacity:0;
+0 0 18px #d8c8ff;
 
 
 animation:
 
-typeIn 0.8s forwards;
-
-
-}
-
-
-
-.vertical-text div:nth-child(1){
-
-animation-delay:.5s;
-
-}
-
-
-.vertical-text div:nth-child(2){
-
-animation-delay:1.3s;
-
-}
-
-
-.vertical-text div:nth-child(3){
-
-animation-delay:2.1s;
+showText 2.5s forwards;
 
 }
 
@@ -226,17 +173,16 @@ animation-delay:2.1s;
 
 
 
-
-.continue-text{
-
-
-margin-top:45px;
+.continue{
 
 
-font-size:28px;
+margin-top:55px;
 
 
-letter-spacing:10px;
+font-size:24px;
+
+
+letter-spacing:12px;
 
 
 opacity:0;
@@ -244,15 +190,15 @@ opacity:0;
 
 text-shadow:
 
-0 0 20px #d9c8ff;
+0 0 18px #d8c8ff;
 
 
 animation:
 
-typeIn 1s forwards;
+showContinue 2s forwards;
 
 
-animation-delay:3.5s;
+animation-delay:2s;
 
 
 }
@@ -261,51 +207,46 @@ animation-delay:3.5s;
 
 
 
-@keyframes typeIn{
+@keyframes showText{
 
 
 from{
 
 opacity:0;
 
-transform:translateY(10px);
+transform:translateY(15px);
 
 }
-
 
 to{
 
 opacity:1;
 
-transform:none;
-
 }
 
 }
 
 
 
+@keyframes showContinue{
 
 
-@keyframes openingEnd{
+from{
 
+opacity:0;
 
-0%,85%{
+}
+
+to{
 
 opacity:1;
 
 }
 
-
-100%{
-
-opacity:0;
-
-visibility:hidden;
-
 }
 
-}
+
+
 
 
 
@@ -316,27 +257,22 @@ visibility:hidden;
 /* 页面 */
 
 
-.screen{
-
+.page{
 
 min-height:100vh;
 
-
 display:flex;
-
 
 justify-content:center;
 
-
 align-items:center;
-
 
 padding:30px;
 
 
 animation:
 
-fade .6s;
+fade .5s;
 
 
 }
@@ -346,19 +282,21 @@ fade .6s;
 
 .hidden{
 
-display:none;
+display:none!important;
 
 }
 
 
 
 
-@keyframes fade{
 
+@keyframes fade{
 
 from{
 
 opacity:0;
+
+transform:translateY(15px);
 
 }
 
@@ -369,7 +307,11 @@ opacity:1;
 
 }
 
+
 }
+
+
+
 
 
 
@@ -379,74 +321,76 @@ opacity:1;
 /* 首页 */
 
 
-.home-content{
-
+.home-title{
 
 text-align:center;
 
-
 }
 
 
 
+.home-title h1{
 
-.home-content h1{
-
-
-font-size:46px;
-
+font-size:44px;
 
 font-weight:normal;
 
-
 letter-spacing:8px;
-
 
 text-shadow:
 
-0 0 25px #bba6ff;
-
+0 0 25px #bca7ff;
 
 }
 
 
 
-.home-content p{
-
-
-opacity:.8;
-
+.home-title p{
 
 letter-spacing:3px;
 
+opacity:.75;
 
 }
 
 
 
+
+
+.home-buttons{
+
+
+display:flex;
+
+flex-direction:column;
+
+
+gap:30px;
+
+
+margin-top:50px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* 按钮 */
 
 
 button{
 
 
-margin-top:25px;
+border:none;
 
 
-display:block;
-
-
-width:280px;
-
-
-padding:16px;
-
-
-border-radius:40px;
-
-
-border:
-
-1px solid rgba(255,255,255,.3);
+color:white;
 
 
 background:
@@ -454,20 +398,26 @@ background:
 rgba(255,255,255,.12);
 
 
-color:white;
+border:
+
+1px solid rgba(255,255,255,.25);
 
 
-font-size:18px;
+border-radius:40px;
 
 
-backdrop-filter:
+padding:14px 35px;
 
-blur(15px);
+
+font-size:17px;
+
+
+backdrop-filter:blur(15px);
 
 
 box-shadow:
 
-0 0 25px rgba(180,150,255,.35);
+0 0 25px rgba(170,140,255,.35);
 
 
 cursor:pointer;
@@ -481,18 +431,58 @@ transition:.3s;
 
 
 
+
 button:hover{
 
 
 transform:scale(1.05);
 
 
-box-shadow:
+}
 
-0 0 40px rgba(200,170,255,.7);
+
+
+
+
+/* 返回 */
+
+
+.exit{
+
+
+position:fixed;
+
+
+top:20px;
+
+
+right:20px;
+
+
+width:38px;
+
+
+height:38px;
+
+
+padding:0;
+
+
+margin:0;
+
+
+font-size:22px;
+
+
+z-index:50;
+
+
+border-radius:50%;
 
 
 }
+
+
 
 
 
@@ -507,6 +497,12 @@ box-shadow:
 
 
 width:min(850px,95%);
+
+
+max-height:90vh;
+
+
+overflow:auto;
 
 
 padding:35px;
@@ -527,10 +523,115 @@ blur(20px);
 
 box-shadow:
 
-0 0 40px rgba(130,110,220,.35);
+0 0 40px rgba(150,120,255,.35);
 
 
 }
+
+
+
+
+
+.paper h1{
+
+
+text-align:center;
+
+
+font-weight:normal;
+
+
+letter-spacing:5px;
+
+
+}
+
+
+
+
+
+
+
+#date{
+
+
+text-align:center;
+
+opacity:.7;
+
+margin-bottom:25px;
+
+}
+
+
+
+
+
+
+
+
+/* 塔罗牌 */
+
+
+.cards{
+
+
+display:flex;
+
+gap:20px;
+
+}
+
+
+
+.card{
+
+
+flex:1;
+
+text-align:center;
+
+
+}
+
+
+
+
+
+.card-img{
+
+
+height:120px;
+
+
+border-radius:20px;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+font-size:45px;
+
+
+background:
+
+rgba(255,255,255,.08);
+
+
+box-shadow:
+
+inset 0 0 20px rgba(255,255,255,.1);
+
+
+}
+
+
 
 
 
@@ -541,10 +642,10 @@ textarea{
 width:100%;
 
 
-margin:10px 0;
+padding:12px;
 
 
-padding:14px;
+margin:8px 0;
 
 
 border:none;
@@ -568,82 +669,29 @@ font-size:16px;
 
 
 
+
+
 textarea{
 
-
-height:130px;
-
+height:120px;
 
 }
 
 
-
-
-
-.tarot{
-
-
-display:flex;
-
-
-gap:20px;
-
-
-}
-
-
-
-.tarot div{
-
-
-flex:1;
-
-
-text-align:center;
-
-
-}
-
-
-
-
-.back{
-
-
-position:absolute;
-
-
-top:25px;
-
-
-left:25px;
-
-
-width:auto;
-
-
-}
 
 
 
 @media(max-width:700px){
 
 
-.tarot{
+.cards{
 
 flex-direction:column;
 
 }
 
 
-.home-content h1{
-
-font-size:36px;
-
-}
-
     }
-
 
 </style>
 
@@ -654,33 +702,36 @@ font-size:36px;
 <body>
 
 
-<!-- 星空 -->
+<!-- 星空背景 -->
 
-<div id="sky"></div>
+<div id="stars"></div>
+
+
 
 
 
 <!-- 开场 -->
 
-<div id="opening">
+
+<div id="opening"
+onclick="skipOpening()">
 
 
-<div class="opening-title">
+
+<div class="opening-box">
 
 
-<div class="vertical-text">
+<div class="you">
 
-<div>你</div>
-
-<div>与</div>
-
-<div>他</div>
+你<br>
+与<br>
+他
 
 </div>
 
 
 
-<div class="continue-text">
+<div class="continue">
 
 未完待续
 
@@ -699,13 +750,17 @@ font-size:36px;
 
 
 
+
+
 <!-- 首页 -->
 
 
-<div id="home" class="screen">
+<div id="home"
+class="page">
 
 
-<div class="home-content">
+
+<div class="home-title">
 
 
 <h1>
@@ -718,8 +773,16 @@ font-size:36px;
 </p>
 
 
+</div>
 
-<button onclick="showRecord()">
+
+
+
+
+<div class="home-buttons">
+
+
+<button onclick="openRecord()">
 
 ✨ 记录今日塔罗
 
@@ -727,18 +790,20 @@ font-size:36px;
 
 
 
-<button onclick="showDiary()">
+<button onclick="openDiary()">
 
 📖 打开星间日记
 
 </button>
 
 
-</div>
-
-
 
 </div>
+
+
+
+</div>
+
 
 
 
@@ -750,19 +815,26 @@ font-size:36px;
 <!-- 记录页面 -->
 
 
-<div id="record" class="screen hidden">
+<div id="record"
+class="page hidden">
 
 
-<button class="back"
+
+<button class="exit"
 onclick="backHome()">
 
-← 返回
+×
+
 
 </button>
 
 
 
+
+
+
 <div class="paper">
+
 
 
 <h1>
@@ -771,47 +843,10 @@ onclick="backHome()">
 
 
 
-<p id="today"></p>
-
-
-
-<div class="tarot">
-
-
-<div>
-
-过去
-
-<input id="past">
-
+<div id="date">
 
 </div>
 
-
-
-<div>
-
-现在
-
-<input id="now">
-
-
-</div>
-
-
-
-
-<div>
-
-未来
-
-<input id="future">
-
-
-</div>
-
-
-</div>
 
 
 
@@ -820,11 +855,118 @@ onclick="backHome()">
 
 
 <h2>
-🕊 想对他说的话
+今日牌阵
+</h2>
+
+
+
+<div class="cards">
+
+
+
+<div class="card">
+
+<div class="card-img">
+🔮
+</div>
+
+
+<p>
+过去
+</p>
+
+
+<input id="past"
+placeholder="塔罗牌名称">
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+<div class="card-img">
+🔮
+</div>
+
+
+<p>
+现在
+</p>
+
+
+<input id="present"
+placeholder="塔罗牌名称">
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+
+<div class="card-img">
+🔮
+</div>
+
+
+<p>
+未来
+</p>
+
+
+<input id="future"
+placeholder="塔罗牌名称">
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<h2>
+🖼 塔罗牌图片
+</h2>
+
+
+<input type="file"
+id="imageUpload"
+accept="image/*">
+
+
+
+
+
+
+
+
+<h2>
+🕊 我想对他说的话
 </h2>
 
 
 <textarea id="message"></textarea>
+
+
+
+
 
 
 
@@ -841,27 +983,39 @@ onclick="backHome()">
 
 
 
+
+
+
+
 <h2>
-📖 今日记录
+💌 他的回答
 </h2>
 
 
-<textarea id="diary"></textarea>
+<textarea id="reply"></textarea>
 
 
 
 
-<button onclick="save()">
 
-保存今日记录
+
+
+
+<button onclick="saveRecord()">
+
+保存今日星光
 
 </button>
 
 
+
+
+
 </div>
 
 
 </div>
+
 
 
 
@@ -873,19 +1027,25 @@ onclick="backHome()">
 <!-- 日记页面 -->
 
 
-<div id="diaryPage" class="screen hidden">
+<div id="diary"
+class="page hidden">
 
 
-<button class="back"
+
+<button class="exit"
 onclick="backHome()">
 
-← 返回
+×
 
 </button>
 
 
 
+
+
+
 <div class="paper">
+
 
 
 <h1>
@@ -894,7 +1054,9 @@ onclick="backHome()">
 
 
 
-<button onclick="editMode()">
+
+
+<button onclick="editDiary()">
 
 编辑
 
@@ -902,18 +1064,23 @@ onclick="backHome()">
 
 
 
+
+
 <div id="history">
 
-暂无记录
 
 </div>
 
 
 
+
+
 </div>
 
 
 </div>
+
+
 
 
 
@@ -923,36 +1090,29 @@ onclick="backHome()">
 
 <script>
 
-// =================
-// 生成星空
-// =================
+// =====================
+// 星空生成
+// =====================
 
 
-const sky =
-document.getElementById("sky");
+const stars =
+document.getElementById("stars");
 
 
+for(let i=0;i<160;i++){
 
-for(let i=0;i<150;i++){
-
-
-let star =
-document.createElement("div");
-
+let star=document.createElement("div");
 
 star.className="star";
 
 
-
-let size =
+let size=
 Math.random()*3+1;
-
 
 
 star.style.width=size+"px";
 
 star.style.height=size+"px";
-
 
 
 star.style.left=
@@ -963,13 +1123,11 @@ star.style.top=
 Math.random()*100+"%";
 
 
-
 star.style.animationDelay=
-Math.random()*4+"s";
+Math.random()*5+"s";
 
 
-
-sky.appendChild(star);
+stars.appendChild(star);
 
 
 }
@@ -979,22 +1137,53 @@ sky.appendChild(star);
 
 
 
+// =====================
+// 开场
+// =====================
+
+
+let openingFinished=false;
 
 
 
-// =================
-// 开场结束
-// =================
+function skipOpening(){
 
 
-setTimeout(function(){
+if(openingFinished)
+return;
+
+
+openingFinished=true;
+
+
+document.getElementById("opening")
+.style.opacity="0";
+
+
+
+setTimeout(()=>{
 
 
 document.getElementById("opening")
 .style.display="none";
 
 
-},6000);
+},800);
+
+
+}
+
+
+
+
+
+setTimeout(()=>{
+
+
+skipOpening();
+
+
+},5000);
 
 
 
@@ -1004,17 +1193,17 @@ document.getElementById("opening")
 
 
 
-// =================
+
+// =====================
 // 页面切换
-// =================
+// =====================
 
 
-function hideAll(){
+function hidePages(){
 
 
-document
-.querySelectorAll(".screen")
-.forEach(function(page){
+document.querySelectorAll(".page")
+.forEach(page=>{
 
 
 page.classList.add("hidden");
@@ -1029,11 +1218,10 @@ page.classList.add("hidden");
 
 
 
-function showRecord(){
+function openRecord(){
 
 
-hideAll();
-
+hidePages();
 
 
 document
@@ -1041,11 +1229,17 @@ document
 .classList.remove("hidden");
 
 
-
-document.getElementById("today")
+document.getElementById("date")
 .innerHTML=
-
-new Date().toLocaleDateString();
+new Date()
+.toLocaleDateString(
+"zh-CN",
+{
+year:"numeric",
+month:"long",
+day:"numeric"
+}
+);
 
 
 }
@@ -1054,22 +1248,18 @@ new Date().toLocaleDateString();
 
 
 
+function openDiary(){
 
 
-function showDiary(){
-
-
-hideAll();
-
+hidePages();
 
 
 document
-.getElementById("diaryPage")
+.getElementById("diary")
 .classList.remove("hidden");
 
 
-
-loadDiary();
+loadHistory();
 
 
 }
@@ -1081,8 +1271,7 @@ loadDiary();
 function backHome(){
 
 
-hideAll();
-
+hidePages();
 
 
 document
@@ -1100,50 +1289,46 @@ document
 
 
 
-// =================
-// 保存记录
-// =================
+// =====================
+// 保存
+// =====================
 
 
-function save(){
+function saveRecord(){
 
 
-let item={
+let data={
 
 
 time:
-
-new Date().toLocaleString(),
+new Date()
+.toLocaleDateString(
+"zh-CN"
+),
 
 
 past:
-
 document.getElementById("past").value,
 
 
-now:
-
-document.getElementById("now").value,
+present:
+document.getElementById("present").value,
 
 
 future:
-
 document.getElementById("future").value,
 
 
 message:
-
 document.getElementById("message").value,
 
 
 reading:
-
 document.getElementById("reading").value,
 
 
-diary:
-
-document.getElementById("diary").value
+reply:
+document.getElementById("reply").value
 
 
 };
@@ -1151,30 +1336,23 @@ document.getElementById("diary").value
 
 
 
-
-let list =
+let list=
 
 JSON.parse(
-
-localStorage.getItem("starNotes")
-
+localStorage.getItem("starMemory")
 )
-
 ||[];
 
 
 
 
-list.push(item);
+list.push(data);
 
 
 
 localStorage.setItem(
-
-"starNotes",
-
+"starMemory",
 JSON.stringify(list)
-
 );
 
 
@@ -1192,31 +1370,30 @@ alert("🌙 今日星光已保存");
 
 
 
-// =================
+// =====================
 // 日记
-// =================
+// =====================
 
 
-function loadDiary(){
+function loadHistory(){
 
 
-
-let box =
-
+let box=
 document.getElementById("history");
 
 
 
-let list =
+let list=
 
 JSON.parse(
-
-localStorage.getItem("starNotes")
-
+localStorage.getItem("starMemory")
 )
-
 ||[];
 
+
+
+
+box.innerHTML="";
 
 
 
@@ -1225,8 +1402,7 @@ if(list.length===0){
 
 
 box.innerHTML=
-
-"还没有星间记录";
+"还没有记录";
 
 
 return;
@@ -1238,27 +1414,20 @@ return;
 
 
 
-box.innerHTML="";
-
-
-
-
-
-list.reverse().forEach(function(item){
+list.reverse()
+.forEach((item,index)=>{
 
 
 
 let div=
-
 document.createElement("div");
 
 
-div.style.margin="25px 0";
+div.className="paper";
 
 
 
 div.innerHTML=
-
 
 `
 
@@ -1268,29 +1437,36 @@ div.innerHTML=
 
 
 <p>
-过去：${item.past}
+🔮 过去：${item.past}
 </p>
 
 
 <p>
-现在：${item.now}
+🔮 现在：${item.present}
 </p>
 
 
 <p>
-未来：${item.future}
+🔮 未来：${item.future}
 </p>
 
 
 <p>
-🕊 ${item.message}
+🕊 我想说：
+${item.message}
 </p>
 
 
 <p>
-🔮 ${item.reading}
+🔮 解读：
+${item.reading}
 </p>
 
+
+<p>
+💌 他的回答：
+${item.reply}
+</p>
 
 `;
 
@@ -1299,17 +1475,30 @@ div.innerHTML=
 box.appendChild(div);
 
 
-
 });
 
+
+}
+
+
+
+
+
+
+function editDiary(){
+
+alert(
+"编辑功能下一步加入"
+);
 
 
     }
 
-
 </script>
 
 
+
 </body>
+
 
 </html>
