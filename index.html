@@ -2,9 +2,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>星间手札</title>
 
 <style>
+
 *{
     box-sizing:border-box;
 }
@@ -12,113 +15,197 @@
 body{
     margin:0;
     min-height:100vh;
-    background:
-    radial-gradient(circle at top,#40356b,#090b22 60%);
-    color:#eee;
-    font-family:"Microsoft YaHei",sans-serif;
     padding:30px;
+    color:#f5f2ff;
+    font-family:"Microsoft YaHei",sans-serif;
+    background:
+    radial-gradient(circle at top,#40356b,#090b22 65%);
     overflow-x:hidden;
 }
 
-/* 星空 */
-.star{
+
+body::before{
+    content:"";
     position:fixed;
-    width:3px;
-    height:3px;
-    background:white;
-    border-radius:50%;
-    animation:twinkle 3s infinite;
+    inset:0;
+    background-image:
+    radial-gradient(white 1px,transparent 1px);
+    background-size:80px 80px;
+    opacity:0.25;
+    animation:moveStar 20s linear infinite;
+    pointer-events:none;
 }
 
-@keyframes twinkle{
-    50%{
-        opacity:0.2;
-    }
+
+@keyframes moveStar{
+
+from{
+transform:translateY(0);
 }
 
-.container{
-    max-width:800px;
-    margin:auto;
-    background:rgba(255,255,255,0.12);
-    backdrop-filter:blur(15px);
-    border-radius:25px;
-    padding:35px;
-    box-shadow:0 0 40px rgba(150,120,255,0.3);
+to{
+transform:translateY(80px);
 }
+
+}
+
+
+
+.book{
+
+max-width:800px;
+margin:auto;
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(15px);
+
+border-radius:30px;
+
+padding:35px;
+
+box-shadow:
+0 0 40px rgba(160,130,255,0.35);
+
+}
+
+
 
 h1{
-    text-align:center;
-    font-size:42px;
+
+text-align:center;
+
+font-size:42px;
+
+margin-bottom:10px;
+
 }
+
+
 
 .subtitle{
-    text-align:center;
-    opacity:0.8;
+
+text-align:center;
+
+opacity:0.8;
+
 }
 
 
-.card{
-    margin-top:25px;
-    padding:20px;
-    background:rgba(255,255,255,0.08);
-    border-radius:18px;
+
+.section{
+
+margin-top:25px;
+
+padding:20px;
+
+background:
+rgba(255,255,255,0.08);
+
+border-radius:20px;
+
 }
+
+
+
+h2{
+
+font-size:22px;
+
+}
+
+
+
+input,
+select,
+textarea{
+
+width:100%;
+
+margin:8px 0;
+
+padding:12px;
+
+border:none;
+
+border-radius:12px;
+
+background:
+rgba(0,0,0,0.25);
+
+color:white;
+
+font-size:16px;
+
+}
+
 
 
 textarea{
-    width:100%;
-    min-height:120px;
-    background:rgba(0,0,0,0.2);
-    border:none;
-    border-radius:15px;
-    padding:15px;
-    color:white;
-    font-size:16px;
+
+height:130px;
+
+resize:vertical;
+
 }
 
-
-input{
-    background:rgba(255,255,255,0.15);
-    border:none;
-    border-radius:10px;
-    padding:8px;
-    color:white;
-}
 
 
 button{
-    margin-top:20px;
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:30px;
-    background:#8c7cff;
-    color:white;
-    font-size:18px;
+
+width:100%;
+
+margin-top:25px;
+
+padding:15px;
+
+border:none;
+
+border-radius:30px;
+
+background:#8d7cff;
+
+color:white;
+
+font-size:18px;
+
 }
 
+
+
 button:hover{
-    opacity:0.8;
+
+opacity:0.85;
+
+}
+
+
+#history{
+
+line-height:1.8;
+
+opacity:0.9;
+
 }
 
 </style>
 
 </head>
 
-
 <body>
 
+<div class="stars"></div>
 
-<div class="container">
+<div class="book">
 
 <h1>🌌 星间手札</h1>
 
 <p class="subtitle">
-记录每一次抽牌，记录每一次想念。
+记录每一次抽牌，记录每一次想念
 </p>
 
 
-<div class="card">
+<div class="section">
 
 <h2>📅 今日</h2>
 
@@ -127,115 +214,228 @@ button:hover{
 <span id="date"></span>
 </p>
 
+
 <p>
-今日心情：
-⭐
-<input id="mood" placeholder="例如：5">
+心情：
+<select id="mood">
+<option>⭐⭐⭐⭐⭐</option>
+<option>⭐⭐⭐⭐</option>
+<option>⭐⭐⭐</option>
+<option>⭐⭐</option>
+<option>⭐</option>
+</select>
 </p>
 
 </div>
 
 
 
-<div class="card">
+<div class="section">
 
 <h2>🔮 今日塔罗</h2>
 
 
-<p>过去：</p>
-<input id="past" placeholder="牌名">
+<p>过去</p>
+<input id="pastName" placeholder="牌名">
+
+<br>
+
+<input type="file" id="pastImg">
 
 
-<p>现在：</p>
-<input id="now" placeholder="牌名">
+<p>现在</p>
+<input id="nowName" placeholder="牌名">
+
+<br>
+
+<input type="file" id="nowImg">
 
 
-<p>未来：</p>
-<input id="future" placeholder="牌名">
+<p>未来</p>
+<input id="futureName" placeholder="牌名">
+
+<br>
+
+<input type="file" id="futureImg">
 
 
 </div>
 
 
 
-<div class="card">
+<div class="section">
 
 <h2>💫 我的解读</h2>
 
 <textarea id="reading"
-placeholder="记录你的塔罗理解……">
-</textarea>
+placeholder="记录你的理解……"></textarea>
 
 
 </div>
 
 
 
-
-<div class="card">
+<div class="section">
 
 <h2>🕊 想对他说的话</h2>
 
 <textarea id="message"
-placeholder="写下想说的话……">
-</textarea>
+placeholder="想说的话……"></textarea>
 
 
 </div>
 
 
 
-
-<div class="card">
+<div class="section">
 
 <h2>📖 今日记录</h2>
 
 <textarea id="diary"
-placeholder="今天发生了什么……">
-</textarea>
+placeholder="今天发生了什么……"></textarea>
 
 
 </div>
 
 
-<button onclick="save()">
-💾 保存今天的记录
+<button onclick="saveDiary()">
+✨ 保存到星间记忆
 </button>
 
 
+<div class="section">
+
+<h2>📚 历史记录</h2>
+
+<div id="history">
+暂无记录
 </div>
 
+</div>
+
+
+</div>
 
 
 <script>
 
-document.getElementById("date").innerHTML =
-new Date().toLocaleDateString();
+const today = new Date().toLocaleDateString();
+
+document.getElementById("date").innerHTML = today;
 
 
+function saveDiary(){
 
-function save(){
+let record = {
 
-let data={
+date: today,
 
-mood:mood.value,
-past:past.value,
-now:now.value,
-future:future.value,
-reading:reading.value,
-message:message.value,
-diary:diary.value
+mood:
+document.getElementById("mood").value,
+
+past:
+document.getElementById("pastName").value,
+
+now:
+document.getElementById("nowName").value,
+
+future:
+document.getElementById("futureName").value,
+
+reading:
+document.getElementById("reading").value,
+
+message:
+document.getElementById("message").value,
+
+diary:
+document.getElementById("diary").value
 
 };
 
 
+
+let history =
+JSON.parse(
+localStorage.getItem("starMemory")
+)
+||
+[];
+
+
+history.push(record);
+
+
 localStorage.setItem(
-"starDiary",
-JSON.stringify(data)
+"starMemory",
+JSON.stringify(history)
 );
 
 
-alert("✨ 已放入星间记忆");
+
+showHistory();
+
+
+alert("✨ 已保存到星间记忆");
+
+}
+
+
+
+
+function showHistory(){
+
+let box =
+document.getElementById("history");
+
+
+let history =
+JSON.parse(
+localStorage.getItem("starMemory")
+)
+||
+[];
+
+
+
+if(history.length===0){
+
+box.innerHTML="暂无记录";
+
+return;
+
+}
+
+
+
+box.innerHTML="";
+
+
+history.reverse().forEach(function(item){
+
+let div =
+document.createElement("div");
+
+
+div.innerHTML=
+
+"🌙 "+item.date+
+"<br>"+
+"心情："+item.mood+
+"<br>"+
+"过去："+item.past+
+"<br>"+
+"现在："+item.now+
+"<br>"+
+"未来："+item.future+
+"<hr>";
+
+
+box.appendChild(div);
+
+
+});
+
 
 }
 
@@ -243,29 +443,13 @@ alert("✨ 已放入星间记忆");
 
 window.onload=function(){
 
-let data=JSON.parse(
-localStorage.getItem("starDiary")
-);
-
-
-if(data){
-
-mood.value=data.mood;
-past.value=data.past;
-now.value=data.now;
-future.value=data.future;
-reading.value=data.reading;
-message.value=data.message;
-diary.value=data.diary;
-
-}
+showHistory();
 
 };
-
 
 
 </script>
 
 
 </body>
-    </html>
+</html>
