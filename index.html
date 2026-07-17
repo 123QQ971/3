@@ -13,47 +13,23 @@
 <style>
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
 
 
 body{
 
-    margin:0;
+margin:0;
 
-    min-height:100vh;
+min-height:100vh;
 
-    padding:25px;
+background:#050716;
 
-    color:#f5f2ff;
+color:#f5f2ff;
 
-    font-family:"Microsoft YaHei",sans-serif;
+font-family:"Microsoft YaHei",sans-serif;
 
-    background:
-    radial-gradient(circle at top,#40356b,#090b22 70%);
-
-}
-
-
-
-/* 星空效果 */
-
-body::before{
-
-    content:"";
-
-    position:fixed;
-
-    inset:0;
-
-    background-image:
-    radial-gradient(white 1px,transparent 1px);
-
-    background-size:70px 70px;
-
-    opacity:0.25;
-
-    pointer-events:none;
+overflow-x:hidden;
 
 }
 
@@ -61,31 +37,47 @@ body::before{
 
 
 
+/* 开场 */
 
-.book{
+#intro{
+
+position:fixed;
+
+inset:0;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:#02030d;
+
+z-index:10;
+
+animation:introFade 5s forwards;
+
+}
 
 
-    max-width:800px;
 
-    margin:auto;
+#introText{
+
+font-size:45px;
+
+text-align:center;
+
+letter-spacing:8px;
+
+line-height:1.8;
+
+color:white;
+
+text-shadow:
+0 0 20px #b9a7ff;
 
 
-    padding:35px;
-
-
-    background:
-    rgba(255,255,255,0.12);
-
-
-    backdrop-filter:blur(18px);
-
-
-    border-radius:30px;
-
-
-    box-shadow:
-    0 0 45px rgba(150,120,255,0.35);
-
+animation:textShow 5s forwards;
 
 }
 
@@ -93,88 +85,41 @@ body::before{
 
 
 
-h1{
+@keyframes textShow{
 
 
-    text-align:center;
+0%{
 
-    font-size:42px;
+opacity:0;
 
-}
-
-
-
-.subtitle{
-
-
-    text-align:center;
-
-    opacity:0.75;
-
+transform:scale(0.8);
 
 }
 
 
+30%{
 
+opacity:1;
 
-
-.section{
-
-
-    margin-top:25px;
-
-
-    padding:22px;
-
-
-    border-radius:22px;
-
-
-    background:
-    rgba(255,255,255,0.08);
-
+transform:scale(1);
 
 }
 
 
+70%{
 
-
-h2{
-
-    margin-top:0;
+opacity:1;
 
 }
 
 
+100%{
 
+opacity:0;
 
-input,
-textarea{
+transform:scale(1.5);
 
-
-    width:100%;
-
-
-    padding:13px;
-
-
-    margin:8px 0;
-
-
-    border:none;
-
-
-    border-radius:14px;
-
-
-    background:
-    rgba(0,0,0,0.25);
-
-
-    color:white;
-
-
-    font-size:16px;
+}
 
 
 }
@@ -182,14 +127,30 @@ textarea{
 
 
 
-
-textarea{
-
-
-    min-height:130px;
+@keyframes introFade{
 
 
-    resize:vertical;
+0%{
+
+opacity:1;
+
+}
+
+
+80%{
+
+opacity:1;
+
+}
+
+
+100%{
+
+opacity:0;
+
+pointer-events:none;
+
+}
 
 
 }
@@ -199,21 +160,12 @@ textarea{
 
 
 
-
-.emotion{
-
-
-    display:flex;
+/* 页面隐藏 */
 
 
-    gap:10px;
+.hidden{
 
-
-    flex-wrap:wrap;
-
-
-    margin-top:10px;
-
+display:none;
 
 }
 
@@ -221,30 +173,63 @@ textarea{
 
 
 
-.emotion button{
+
+/* 星空主页 */
 
 
-    width:50px;
+#home{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+
+radial-gradient(circle at top,#25204f,#050716);
+
+}
 
 
-    height:50px;
 
 
-    border-radius:50%;
+
+#home::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background-image:
+
+radial-gradient(white 1px,transparent 1px);
+
+background-size:70px 70px;
+
+opacity:0.4;
+
+}
 
 
-    border:none;
 
 
-    font-size:25px;
 
+#home h1{
 
-    cursor:pointer;
+font-size:48px;
 
+z-index:1;
 
-    background:
-    rgba(255,255,255,0.15);
+text-shadow:
 
+0 0 30px #a98cff;
 
 }
 
@@ -254,33 +239,29 @@ textarea{
 
 button{
 
+position:relative;
 
-    width:100%;
+z-index:2;
 
+border:none;
 
-    margin-top:25px;
+border-radius:40px;
 
+padding:16px 40px;
 
-    padding:15px;
+font-size:20px;
 
+color:white;
 
-    border:none;
+background:#8d7cff;
 
+cursor:pointer;
 
-    border-radius:30px;
+box-shadow:
 
-
-    background:#8d7cff;
-
-
-    color:white;
-
-
-    font-size:18px;
-
+0 0 25px rgba(140,120,255,.8);
 
 }
-
 
 
 
@@ -288,9 +269,7 @@ button{
 
 button:hover{
 
-
-    opacity:0.85;
-
+transform:scale(1.05);
 
 }
 
@@ -298,20 +277,166 @@ button:hover{
 
 
 
-#imagePreview img{
 
 
-    max-width:100%;
+.page{
 
+min-height:100vh;
 
-    border-radius:20px;
+padding:30px;
 
+background:
 
-    margin-top:15px;
-
+radial-gradient(circle at top,#29234f,#050716);
 
 }
 
+
+
+
+
+.book{
+
+max-width:800px;
+
+margin:auto;
+
+padding:30px;
+
+background:
+
+rgba(255,255,255,0.12);
+
+border-radius:30px;
+
+backdrop-filter:blur(15px);
+
+box-shadow:
+
+0 0 40px rgba(150,120,255,.3);
+
+}
+
+
+
+
+
+.section{
+
+margin-top:25px;
+
+padding:20px;
+
+border-radius:20px;
+
+background:
+
+rgba(255,255,255,.08);
+
+}
+
+
+
+
+
+input,
+textarea{
+
+width:100%;
+
+margin:8px 0;
+
+padding:12px;
+
+border:none;
+
+border-radius:12px;
+
+background:
+
+rgba(0,0,0,.3);
+
+color:white;
+
+font-size:16px;
+
+}
+
+
+
+
+textarea{
+
+height:130px;
+
+}
+
+
+
+
+
+.emotion{
+
+display:flex;
+
+gap:10px;
+
+}
+
+
+
+.emotion button{
+
+padding:10px;
+
+width:55px;
+
+height:55px;
+
+font-size:25px;
+
+background:
+
+rgba(255,255,255,.15);
+
+}
+
+
+
+
+
+.exit{
+
+margin-bottom:20px;
+
+background:
+
+rgba(255,255,255,.15);
+
+}
+
+
+
+
+
+
+#diaryPage{
+
+text-align:center;
+
+}
+
+
+
+
+
+#history{
+
+max-width:800px;
+
+margin:30px auto;
+
+}
 
 
 
@@ -319,65 +444,19 @@ button:hover{
 
 .history-item{
 
-
-    padding:15px;
-
-
-    margin-top:15px;
-
-
-    background:
-    rgba(0,0,0,0.2);
-
-
-    border-radius:15px;
-
-
-}
-
-
-
-
-
-
-.delete-btn{
-
-
-    background:#d66;
-
-
-    margin-top:10px;
-
-
-}
-
-
-
-
-
-@media(max-width:600px){
-
-
-.book{
-
-
 padding:20px;
 
+margin:15px;
 
-}
+border-radius:20px;
 
+background:
 
+rgba(255,255,255,.1);
 
-h1{
-
-font-size:32px;
-
-}
-
-
+text-align:left;
 
     }
-
 
 </style>
 
@@ -389,58 +468,115 @@ font-size:32px;
 <body>
 
 
+<!-- 开场页面 -->
+
+<div id="intro">
+
+
+<div id="introText">
+
+你与他<br>
+未完待续
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- 星空主页 -->
+
+
+<div id="home" class="hidden">
+
+
+<h1>
+🌌 星间手札
+</h1>
+
+
+<button onclick="openRecord()">
+
+记录今日塔罗
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- 记录页面 -->
+
+
+<div id="record" class="page hidden">
+
+
+<button class="exit"
+onclick="backHome()">
+
+← 退出
+
+</button>
+
+
+
 <div class="book">
 
 
-<h1>🌌 星间手札</h1>
-
-<p class="subtitle">
-记录每一次抽牌，记录每一次想念
-</p>
+<h1>
+🔮 今日塔罗
+</h1>
 
 
 
 <div class="section">
 
-<h2>📅 今日记录</h2>
+
+<h2>
+🌙 今日心情
+</h2>
 
 
-<p>
-日期：
-<span id="date"></span>
-</p>
-
-
-
-<h3>🌙 今日心情</h3>
-
-
-<input 
-id="moodText"
-placeholder="写下今天的心情……">
+<input id="moodText"
+placeholder="今天的心情……">
 
 
 
 <div class="emotion">
 
-<button onclick="chooseMood('😊')">😊</button>
 
-<button onclick="chooseMood('🥰')">🥰</button>
+<button onclick="chooseMood('😊')">
+😊
+</button>
 
-<button onclick="chooseMood('😢')">😢</button>
 
-<button onclick="chooseMood('😡')">😡</button>
+<button onclick="chooseMood('🥰')">
+🥰
+</button>
 
-<button onclick="chooseMood('😴')">😴</button>
 
-<button onclick="chooseMood('🌙')">🌙</button>
+<button onclick="chooseMood('😢')">
+😢
+</button>
+
+
+<button onclick="chooseMood('🌙')">
+🌙
+</button>
 
 
 </div>
 
 
 <p id="selectedMood">
-选择的心情：
 </p>
 
 
@@ -450,99 +586,26 @@ placeholder="写下今天的心情……">
 
 
 
-<div class="section">
-
-
-<h2>🔮 今日塔罗</h2>
-
-
-
-<h3>过去</h3>
-
-<input 
-id="pastCard"
-placeholder="塔罗牌名称">
-
-
-<h3>现在</h3>
-
-<input 
-id="nowCard"
-placeholder="塔罗牌名称">
-
-
-<h3>未来</h3>
-
-<input 
-id="futureCard"
-placeholder="塔罗牌名称">
-
-
-</div>
-
-
-
 
 
 <div class="section">
 
 
-<h2>🖼 塔罗牌图片</h2>
+<h2>
+🔮 塔罗牌
+</h2>
 
 
-<input 
-type="file"
-id="tarotImage"
-accept="image/*">
+<input id="pastCard"
+placeholder="过去">
 
 
-
-<div id="imagePreview">
-
-</div>
+<input id="nowCard"
+placeholder="现在">
 
 
-
-</div>
-
-
-
-
-
-
-<div class="section">
-
-
-<h2>🕊 想对他说的话</h2>
-
-
-<textarea 
-id="message"
-placeholder="写下想说的话……">
-
-</textarea>
-
-
-
-</div>
-
-
-
-
-
-
-<div class="section">
-
-
-<h2>🔮 塔罗牌解读</h2>
-
-
-<textarea 
-id="reading"
-placeholder="记录塔罗牌带来的启示……">
-
-</textarea>
-
+<input id="futureCard"
+placeholder="未来">
 
 
 </div>
@@ -556,15 +619,50 @@ placeholder="记录塔罗牌带来的启示……">
 <div class="section">
 
 
-<h2>📖 今日发生的事</h2>
+<h2>
+🕊 想对他说的话
+</h2>
 
 
-<textarea 
-id="diary"
-placeholder="记录今天发生的一切……">
+<textarea id="message"></textarea>
 
-</textarea>
 
+</div>
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+🔮 塔罗牌解读
+</h2>
+
+
+<textarea id="reading"></textarea>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="section">
+
+
+<h2>
+📖 今日记录
+</h2>
+
+
+<textarea id="diary"></textarea>
 
 
 </div>
@@ -576,7 +674,7 @@ placeholder="记录今天发生的一切……">
 
 <button onclick="saveDiary()">
 
-✨ 保存今天的记录
+✨ 保存记录
 
 </button>
 
@@ -584,30 +682,64 @@ placeholder="记录今天发生的一切……">
 
 
 
+<button onclick="openDiary()">
+
+📖 打开日记
+
+</button>
 
 
-<div class="section">
+
+</div>
 
 
-<h2>📚 历史记录</h2>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- 日记页面 -->
+
+
+<div id="diaryPage" class="page hidden">
+
+
+<button class="exit"
+onclick="backHome()">
+
+← 返回
+
+</button>
+
+
+
+<h1>
+📖 我的星间记录
+</h1>
+
+
+
+<button onclick="toggleEdit()">
+
+编辑
+
+</button>
+
 
 
 <div id="history">
 
-暂无记录
 
 </div>
 
 
 
 </div>
-
-
-
-
-
-</div>
-
 
 
 
@@ -616,13 +748,24 @@ placeholder="记录今天发生的一切……">
 <script>
 
 
-let selectedMood = "";
+let selectedMood="";
+
+let editing=false;
 
 
-// 日期
 
-document.getElementById("date").innerHTML =
-new Date().toLocaleDateString();
+// 开场结束进入主页
+
+setTimeout(function(){
+
+document.getElementById("intro").style.display="none";
+
+document.getElementById("home").classList.remove("hidden");
+
+
+},5000);
+
+
 
 
 
@@ -630,55 +773,54 @@ new Date().toLocaleDateString();
 
 function chooseMood(mood){
 
-selectedMood = mood;
+selectedMood=mood;
 
-document.getElementById("selectedMood").innerHTML =
-"选择的心情：" + mood;
+document.getElementById("selectedMood").innerHTML=
+"今日心情："+mood;
+
+}
+
+
+
+
+
+
+// 页面切换
+
+
+function openRecord(){
+
+home.classList.add("hidden");
+
+record.classList.remove("hidden");
 
 }
 
 
 
 
-// 图片预览
+function backHome(){
 
-document.getElementById("tarotImage")
-.addEventListener("change",function(){
+record.classList.add("hidden");
 
-let file=this.files[0];
+diaryPage.classList.add("hidden");
 
-if(file){
-
-let reader=new FileReader();
-
-
-reader.onload=function(e){
-
-document.getElementById("imagePreview").innerHTML=
-
-'<img src="'+e.target.result+'">';
-
-};
-
-
-reader.readAsDataURL(file);
+home.classList.remove("hidden");
 
 }
 
 
-});
 
 
 
 
+// 保存记录
 
-
-// 保存
 
 function saveDiary(){
 
 
-let record={
+let data={
 
 
 id:Date.now(),
@@ -687,12 +829,12 @@ id:Date.now(),
 date:new Date().toLocaleDateString(),
 
 
-moodText:
-document.getElementById("moodText").value,
-
-
 mood:
 selectedMood,
+
+
+moodText:
+document.getElementById("moodText").value,
 
 
 past:
@@ -716,11 +858,7 @@ document.getElementById("reading").value,
 
 
 diary:
-document.getElementById("diary").value,
-
-
-image:
-document.getElementById("imagePreview").innerHTML
+document.getElementById("diary").value
 
 
 };
@@ -730,18 +868,16 @@ document.getElementById("imagePreview").innerHTML
 
 let list=
 
-JSON.parse(
-localStorage.getItem("starMemory")
-)
+JSON.parse(localStorage.getItem("starMemory"))
+
 ||
+
 [];
 
 
 
 
-list.push(record);
-
-
+list.push(data);
 
 
 localStorage.setItem(
@@ -754,10 +890,8 @@ JSON.stringify(list)
 
 
 
-showHistory();
+alert("✨ 记录已经保存");
 
-
-alert("✨ 已保存到星间记忆");
 
 }
 
@@ -767,21 +901,43 @@ alert("✨ 已保存到星间记忆");
 
 
 
-// 显示历史
+// 打开日记
+
+
+function openDiary(){
+
+
+record.classList.add("hidden");
+
+
+diaryPage.classList.remove("hidden");
+
+
+showHistory();
+
+
+}
+
+
+
+
+
+
+
+
+// 显示记录
+
 
 function showHistory(){
 
 
-let box=
-document.getElementById("history");
 
+let box=document.getElementById("history");
 
 
 let list=
 
-JSON.parse(
-localStorage.getItem("starMemory")
-)
+JSON.parse(localStorage.getItem("starMemory"))
 
 ||
 
@@ -790,24 +946,13 @@ localStorage.getItem("starMemory")
 
 
 
-
-if(list.length===0){
-
-box.innerHTML="暂无记录";
-
-return;
-
-}
-
-
-
-
-
 box.innerHTML="";
 
 
 
-list.reverse().forEach(function(item){
+
+
+list.forEach(function(item,index){
 
 
 
@@ -820,48 +965,65 @@ div.className="history-item";
 
 div.innerHTML=
 
+
 `
 
+<h3>
 🌙 ${item.date}
-
-<br>
-
-${item.mood || ""}
-
-<br><br>
+</h3>
 
 
-过去：
-${item.past}
+<p>
+心情：${item.mood}
+</p>
 
 
-<br>
-
-现在：
-${item.now}
-
-
-<br>
-
-未来：
-${item.future}
+<p>
+过去：${item.past}
+</p>
 
 
-<br><br>
+<p>
+现在：${item.now}
+</p>
 
 
-🕊 ${item.message.substring(0,50)}
+<p>
+未来：${item.future}
+</p>
 
 
-<br>
+<p>
+${item.message.substring(0,80)}
+</p>
 
 
-<button class="delete-btn"
-onclick="deleteDiary(${item.id})">
 
-删除这条记录
+${
+editing ?
 
+`
+
+<button onclick="moveUp(${index})">
+↑ 上移
 </button>
+
+<button onclick="moveDown(${index})">
+↓ 下移
+</button>
+
+<button onclick="deleteDiary(${item.id})">
+删除
+</button>
+
+`
+
+:
+
+""
+
+}
+
 
 `;
 
@@ -882,20 +1044,37 @@ box.appendChild(div);
 
 
 
-// 删除记录
+
+
+// 编辑模式
+
+
+function toggleEdit(){
+
+
+editing=!editing;
+
+
+showHistory();
+
+
+}
+
+
+
+
+
+
+
+// 删除
 
 
 function deleteDiary(id){
 
 
-if(confirm("确定删除这条记录吗？")){
-
-
 let list=
 
-JSON.parse(
-localStorage.getItem("starMemory")
-)
+JSON.parse(localStorage.getItem("starMemory"))
 
 ||
 
@@ -903,15 +1082,11 @@ localStorage.getItem("starMemory")
 
 
 
-
-list=
-
-list.filter(function(item){
+list=list.filter(function(item){
 
 return item.id!==id;
 
 });
-
 
 
 
@@ -931,6 +1106,47 @@ showHistory();
 }
 
 
+
+
+
+
+
+// 上移
+
+
+function moveUp(index){
+
+
+let list=
+
+JSON.parse(localStorage.getItem("starMemory"));
+
+
+
+if(index>0){
+
+
+[list[index-1],list[index]]
+
+=
+[list[index],list[index-1]];
+
+
+}
+
+
+localStorage.setItem(
+
+"starMemory",
+
+JSON.stringify(list)
+
+);
+
+
+
+showHistory();
+
 }
 
 
@@ -938,19 +1154,50 @@ showHistory();
 
 
 
-window.onload=function(){
+// 下移
+
+
+function moveDown(index){
+
+
+let list=
+
+JSON.parse(localStorage.getItem("starMemory"));
+
+
+
+if(index<list.length-1){
+
+
+[list[index+1],list[index]]
+
+=
+[list[index],list[index+1]];
+
+
+}
+
+
+
+localStorage.setItem(
+
+"starMemory",
+
+JSON.stringify(list)
+
+);
+
+
 
 showHistory();
 
-};
 
-
+    }
 
 </script>
 
 
 
 </body>
-
 
 </html>
