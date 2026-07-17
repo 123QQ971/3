@@ -469,6 +469,10 @@ box-shadow:
 
 0 0 40px rgba(160,140,255,.35);
 
+    animation:
+
+floatCard 5s infinite ease-in-out;
+
 
 
 }
@@ -519,10 +523,27 @@ opacity:.75;
 }
 
 
+@keyframes floatCard{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+
+50%{
+
+transform:translateY(-4px);
+
+}
+
+}
 
 
 
 
+    
 
 
 
@@ -862,6 +883,51 @@ flex-direction:column;
     }
 
 
+    #history{
+
+max-height:420px;
+
+overflow-y:auto;
+
+padding:10px;
+
+}
+
+
+
+.history-title{
+
+font-size:18px;
+
+letter-spacing:3px;
+
+}
+
+
+
+.history-date{
+
+font-size:13px;
+
+opacity:.65;
+
+margin-top:6px;
+
+}
+
+
+
+#history>div{
+
+padding:18px 10px;
+
+border-bottom:
+
+1px solid rgba(255,255,255,.15);
+
+    }
+
+    
 </style>
 
 
@@ -1157,6 +1223,7 @@ id="recordTitle">
 
 
 <input
+type="date"
 id="recordTime">
 
 
@@ -1856,15 +1923,22 @@ div.innerHTML=
 
 <div>
 
-🌙 ${item.title || "无标题"}
+div.innerHTML=
+
+`
+
+<div class="history-title">
+
+${item.title || "无标题"}
 
 </div>
 
-<small>
 
-${item.time || "无时间"}
+<div class="history-date">
 
-</small>
+${item.time || "未设置日期"}
+
+</div>
 
 `;
 
@@ -1888,10 +1962,10 @@ box.appendChild(div);
 
 function editDiary(){
 
+let box=document.getElementById("history");
 
-alert(
-"编辑模式将在下一步加入"
-);
+
+box.classList.toggle("edit-mode");
 
 
     }
