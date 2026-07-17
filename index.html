@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>星间手札</title>
+
+<style>
+body {
+    margin:0;
+    height:100vh;
+    background:linear-gradient(#080d2b,#1b1040);
+    color:white;
+    font-family:"Microsoft YaHei",sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.box {
+    width:80%;
+    max-width:600px;
+    padding:40px;
+    background:rgba(255,255,255,0.12);
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    text-align:center;
+    box-shadow:0 0 30px rgba(150,120,255,0.4);
+}
+
+h1 {
+    font-size:40px;
+}
+
+button {
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:#8d7cff;
+    color:white;
+    font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>🌌 星间手札</h1>
+
+<p>
+记录每一次抽牌，记录每一次想念。
+</p>
+
+<p>
+📅 今日日期：
+<script>
+document.write(new Date().toLocaleDateString());
+</script>
+</p>
+
+<button>
+开始记录
+</button>
+
+</div>
+
+</body>
+</html>
