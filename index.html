@@ -1808,20 +1808,23 @@ function loadHistory(){
 
         div.innerHTML=`
 
-        <div class="history-title">
+<div class="history-title">
 
-        ${item.title || "无标题"}
+${item.title || "无标题"}
 
-        </div>
+</div>
 
 
-        <div class="history-date">
+<div class="history-date">
 
-        ${item.time || "未设置日期"}
+${item.time || "未设置日期"}
 
-        </div>
+</div>
 
-        `;
+
+`;
+
+div.dataset.id=item.id;
 
 
         box.appendChild(div);
@@ -1842,14 +1845,94 @@ function loadHistory(){
 
 function editDiary(){
 
-    let box =
-    document.getElementById("history");
+let box =
+document.getElementById("history");
 
 
-    box.classList.toggle("edit-mode");
+let items =
+box.children;
+
+
+for(let i=0;i<items.length;i++){
+
+
+let old =
+items[i].querySelector(".delete-btn");
+
+
+if(old){
+
+old.remove();
+
+continue;
 
 }
 
+
+
+let btn =
+document.createElement("button");
+
+
+btn.innerHTML="删除";
+
+
+btn.className="delete-btn";
+
+
+btn.onclick=function(){
+
+
+deleteRecord(
+items[i].dataset.id
+);
+
+
+};
+
+
+
+items[i].appendChild(btn);
+
+
+}
+
+
+    }
+
+    function deleteRecord(id){
+
+
+let list =
+JSON.parse(
+localStorage.getItem("records")
+)
+|| [];
+
+
+
+list =
+list.filter(item=>{
+
+
+return item.id != id;
+
+
+});
+
+
+
+localStorage.setItem(
+"records",
+JSON.stringify(list)
+);
+
+
+
+loadHistory();
+
+
+    }
 
 </script>
 
